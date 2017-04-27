@@ -1,5 +1,7 @@
+## Версия Node.js
+    v6.7.0
 ## Установка всех зависимостей
-    npm install
+    npm install 
 ## Запуск сервера node.js 
     npm run server
 ## Запуск frontend
