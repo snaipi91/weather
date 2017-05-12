@@ -4,7 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 const BUILD_PATH    = path.resolve(__dirname, './public');
 const SOURCE_PATH   = path.resolve(__dirname, './src');
 const SERVER_PATH   = path.resolve(__dirname, './src/api/index');
-const ENTRY         = path.resolve(__dirname, './src/app.js');
+const ENTRY         = path.resolve(__dirname, './src/index.js');
 
 console.log(path.resolve(__dirname, "node_modules"));
 
