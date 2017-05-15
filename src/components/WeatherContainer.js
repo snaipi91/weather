@@ -6,6 +6,8 @@ import MenuItem from 'material-ui/MenuItem';
 import WidgetWeather from './widgetWeather/WidgetWeather';
 import VisualizationContainer from './visualization/VisualizationContainer';
 
+import {Link} from 'react-router';
+
 import './main.scss';
 
 class WeatherContainer extends Component {
@@ -74,6 +76,9 @@ class WeatherContainer extends Component {
                     <WidgetWeather data={this.state.data} city={this.state.city}/>
                 </div>
                 <VisualizationContainer/>
+                <h1>
+                    <Link to="/page">To link</Link>
+                </h1>
             </div>
         )
     }

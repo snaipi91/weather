@@ -1,3 +1,4 @@
+import webpack from 'webpack';
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
@@ -6,7 +7,7 @@ const SOURCE_PATH   = path.resolve(__dirname, './src');
 const SERVER_PATH   = path.resolve(__dirname, './src/api/index');
 const ENTRY         = path.resolve(__dirname, './src/index.js');
 
-console.log(path.resolve(__dirname, "node_modules"));
+const NODE_ENV = process.env.NODE_ENV || 'DEVELOPMENT';
 
 module.exports = {
 
@@ -14,8 +15,11 @@ module.exports = {
 
     output: {
         filename: 'bundle.js',
-        library: "vendor",
         path: BUILD_PATH
+    },
+
+    devServer: {
+        contentBase: './src'
     },
 
     module: {
@@ -35,17 +39,15 @@ module.exports = {
 
     plugins: [
         new HtmlWebpackPlugin({
-        title: 'Weather service',
-        filename: 'index.html',
-        template: SOURCE_PATH + '/index.html'
-        })
-    ],
+            title: 'Weather service',
+            filename: 'index.html',
+            template: SOURCE_PATH + '/index.html'
+        }),
 
-    devServer: {
-        contentBase: SOURCE_PATH,
-        compress: true,
-        port: 9000
-    },
+        new webpack.DefinePlugin([
+            NODE_ENV, JSON.stringify(NODE_ENV)
+        ])
+    ],
 
     devtool: "inline-source-map"
 };

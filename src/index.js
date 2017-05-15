@@ -23,6 +23,8 @@ ReactDOM.render(
             <Route path="/" component={App}>
                 <IndexRoute component={WeatherContainer}/>
                 <Route path="page" component={AnotherContainer}/>
+                <Route path="page/show" component={AnotherContainer}/>
+                <Route path="*" component={Error404}/>
             </Route>
         </Router>
     </MuiThemeProvider>,
