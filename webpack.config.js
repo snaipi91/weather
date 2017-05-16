@@ -41,7 +41,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Weather service',
             filename: 'index.html',
-            template: BUILD_PATH + '/index.html'
+            template: SOURCE_PATH + '/index.html'
         }),
 
         new webpack.DefinePlugin([
