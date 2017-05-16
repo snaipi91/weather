@@ -4,8 +4,8 @@
   "description": "",
   "main": "public/index.html",
   "scripts": {
-    "dev": "cross-env NODE_ENV=DEVELOPMENT node_modules/.bin/webpack-dev-server",
-    "devServer": "node ./src/devServer",
+    "build": "webpack",
+    "dev": "cross-env NODE_ENV=development babel-node ./src/devServer",
     "server": "node ./api/index",
     "test": "echo \"Error: no test snpecified\" && exit 1"
   },
@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.1",

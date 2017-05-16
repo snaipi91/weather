@@ -77,7 +77,7 @@ class WeatherContainer extends Component {
                 </div>
                 <VisualizationContainer/>
                 <h1>
-                    <Link to="/page">To link</Link>
+                    <Link to="/news/sports">To link</Link>
                 </h1>
             </div>
         )
