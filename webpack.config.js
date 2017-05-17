@@ -4,14 +4,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const BUILD_PATH    = path.resolve(__dirname, './public');
 const SOURCE_PATH   = path.resolve(__dirname, './src');
-const SERVER_PATH   = path.resolve(__dirname, './src/api/index');
 const ENTRY         = path.resolve(__dirname, './src/index.js');
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
 
-    entry: ENTRY,
+    entry: [
+        'webpack-hot-middleware/client?path=http://localhost:9000/__webpack_hmr',
+        ENTRY
+    ],
 
     output: {
         filename: 'bundle.js',
@@ -43,6 +45,9 @@ module.exports = {
             filename: 'index.html',
             template: SOURCE_PATH + '/index.html'
         }),
+
+        new webpack.HotModuleReplacementPlugin(),
+        // new webpack.NoEmitOnErrorsPlugin(),
 
         new webpack.DefinePlugin([
             NODE_ENV, JSON.stringify(NODE_ENV)

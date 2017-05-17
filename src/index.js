@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { Provider } from 'react-redux';
+import { Provider } from 'react-redux'
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
+
+// store
+const store = () => {};
 
 // material UI
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -19,14 +22,16 @@ injectTapEventPlugin();
 
 ReactDOM.render(
     <MuiThemeProvider>
-        <Router history={browserHistory}>
-            <Route path="/" component={App}>
-                <IndexRoute component={WeatherContainer}/>
-                <Route path="news" component={AnotherContainer}/>
-                <Route path="login" component={AnotherContainer}/>
-                <Route path="*" component={Error404}/>
-            </Route>
-        </Router>
+        <Provider store={store}>
+            <Router history={browserHistory}>
+                <Route path="/" component={App}>
+                    <IndexRoute component={WeatherContainer}/>
+                    <Route path="news" component={AnotherContainer}/>
+                    <Route path="login" component={AnotherContainer}/>
+                    <Route path="*" component={Error404}/>
+                </Route>
+            </Router>
+        </Provider>
     </MuiThemeProvider>,
     document.getElementById('root')
 );
