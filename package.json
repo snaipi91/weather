@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "cross-env NODE_ENV=development babel-node ./src/devServer",
+    "production": "babel-node ./src/devServer",
     "server": "node ./api/index",
     "test": "echo \"Error: no test snpecified\" && exit 1"
   },
@@ -29,6 +30,7 @@
     "node-sass": "^4.5.2",
     "react-hot-loader": "^3.0.0-beta.7",
     "react-tap-event-plugin": "^2.0.1",
+    "redux-devtools-extension": "^2.13.2",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
     "webpack": "^2.4.1",

@@ -49,9 +49,9 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         // new webpack.NoEmitOnErrorsPlugin(),
 
-        new webpack.DefinePlugin([
-            NODE_ENV, JSON.stringify(NODE_ENV)
-        ])
+        new webpack.DefinePlugin({
+            __DEV__: JSON.stringify(process.env.NODE_ENV || 'production')
+        })
     ],
 
     resolve: {
