@@ -11,7 +11,7 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 module.exports = {
 
     entry: [
-        'webpack-hot-middleware/client?path=http://localhost:9000/__webpack_hmr',
+        'webpack-hot-middleware/client?path=http://localhost:9000/__webpack_hmr&reload=true',
         ENTRY
     ],
 
@@ -34,7 +34,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: path.resolve(__dirname, "node_modules"),
-                use: ['babel-loader']
+                use: ['react-hot-loader/webpack', 'babel-loader']
             }
         ]
     },
@@ -61,5 +61,5 @@ module.exports = {
         ]
     },
 
-    devtool: "inline-source-map"
+    devtool: "cheap-module-eval-source-map"
 };

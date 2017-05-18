@@ -47,7 +47,6 @@ class WeatherContainer extends Component {
                     })
                 } else {
                     response = JSON.parse(xhr.responseText);
-                    resolve();
                     this.setState({
                         data: response.list,
                         city: response.city.name,
