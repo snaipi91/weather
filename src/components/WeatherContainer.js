@@ -61,7 +61,7 @@ class WeatherContainer extends Component {
     componentDidMount() {
         this.loadData()
             .then(() => {
-                console.log('Выполнен успешно Cerf')
+
             })
 
             .catch(() => {

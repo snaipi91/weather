@@ -1,10 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
+import { Provider } from 'react-redux';
+import { createStore} from 'redux';
+import reducers from './reducers/index';
+
+// const weatherReducer = (state = [], action) => {
+//     console.log(action);
+//     return state;
+// };
 
 // store
-const store = () => {};
+const store = createStore(reducers);
+
+store.dispatch({
+    type: 'ADD_DATA',
+    data: []
+});
 
 // material UI
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
