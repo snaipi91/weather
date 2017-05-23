@@ -24,34 +24,51 @@ class WeatherContainer extends Component {
         }
     }
 
-    handleChange = (event, index, value) => {
-        this.loadData(value);
-        this.setState({value});
+    loadWeatherWidgetData = (value = 'voronezh') => {
+        this.promises(value)
+            .then(
+                resolve => {
+                    this.setState({
+                        data: resolve.list,
+                        city: resolve.city.name,
+                        forecats: resolve.cnt
+                    });
+                },
+                reject => {
+                    this.setState({
+                        errors: reject.errors
+                    })
+                }
+        );
     };
 
-    loadData(city) {
+    handleChange = (event, index, value) => {
+        this.loadWeatherWidgetData(value);
+        this.setState({
+            value
+        });
+    };
+
+    promises(city) {
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest(),
-                response = null,
-                _city = city || 'voronezh';
+                response = null;
 
-            xhr.open("GET", `http://localhost:3000/api/${_city}?ctn=1`, true);
+            xhr.open("GET", `http://localhost:3000/api/${city}?ctn=1`, true);
             xhr.send();
 
-            xhr.onreadystatechange = () => { // (3)
+            xhr.onreadystatechange = () => {
                 if (xhr.readyState != 4) return;
 
                 if (xhr.status != 200) {
-                    this.state({
-                        errors: xhr.status + ': ' + xhr.statusText
-                    })
+                    reject(
+                        {
+                            errors: xhr.status + ': ' + xhr.statusText
+                        }
+                    )
                 } else {
                     response = JSON.parse(xhr.responseText);
-                    this.setState({
-                        data: response.list,
-                        city: response.city.name,
-                        forecats: response.cnt
-                    });
+                    resolve(response);
                 }
             }
         })
@@ -59,14 +76,7 @@ class WeatherContainer extends Component {
 
 
     componentDidMount() {
-        this.loadData()
-            .then(() => {
-
-            })
-
-            .catch(() => {
-                console.log();
-            })
+        this.loadWeatherWidgetData();
     }
 
     render() {
