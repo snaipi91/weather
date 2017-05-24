@@ -10,7 +10,7 @@ export default class WidgetWeather extends Component {
             var _link = null,
                 city = this.props.city,
                 widgetWeather = this.props.data.map(function (item, index) {
-                _link = `http://openweathermap.org/img/w/${item.weather[0].icon}.png`;
+                    _link = `http://openweathermap.org/img/w/${item.weather[0].icon}.png`;
 
                     return (
                         <widgetWeather key={index} className="widget-weather__item">

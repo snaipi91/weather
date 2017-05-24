@@ -1,12 +1,20 @@
+// React, Redux
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {Link} from 'react-router';
+
+// Material-ui
 import AppBar from 'material-ui/AppBar';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
+// Components
 import WidgetWeather from './widgetWeather/WidgetWeather';
 import VisualizationContainer from './visualization/VisualizationContainer';
 
-import {Link} from 'react-router';
+// Actions
+import * as widgetWeatherAction from '../actionsCreate/widgetWeather';
 
 import './main.scss';
 
@@ -15,11 +23,10 @@ class WeatherContainer extends Component {
         super(props);
 
         this.state = {
-            errors: '',
+            errors: [],
             data: [],
-            city: '',
+            city: 'voronezh',
             days: 1,
-            value: 'voronezh',
             forecats: 0
         }
     }
@@ -30,7 +37,6 @@ class WeatherContainer extends Component {
                 resolve => {
                     this.setState({
                         data: resolve.list,
-                        city: resolve.city.name,
                         forecats: resolve.cnt
                     });
                 },
@@ -44,9 +50,6 @@ class WeatherContainer extends Component {
 
     handleChange = (event, index, value) => {
         this.loadWeatherWidgetData(value);
-        this.setState({
-            value
-        });
     };
 
     promises(city) {
@@ -74,8 +77,12 @@ class WeatherContainer extends Component {
         })
     };
 
+    componentWillMount() {
+    }
+
 
     componentDidMount() {
+        console.log(this.props);
         this.loadWeatherWidgetData();
     }
 
@@ -85,7 +92,7 @@ class WeatherContainer extends Component {
                 <AppBar title="Weather demo" iconClassNameRight="muidocs-icon-navigation-expand-more"/>
                 <div className="wrapper-toggle-menu">
                     <div className="b-select-city">
-                        <SelectField floatingLabelText="Город" value={this.state.value} onChange={this.handleChange}>
+                        <SelectField floatingLabelText="Город" value={this.props.widget.city} onChange={this.handleChange}>
                             <MenuItem value={'voronezh'} primaryText="Воронеж" />
                             <MenuItem value={'dubai'} primaryText="Дубаи" />
                             <MenuItem value={'london'} primaryText="Лондон" />
@@ -103,4 +110,14 @@ class WeatherContainer extends Component {
     }
 }
 
-export default WeatherContainer;
+const mapStateToProps = (state) => {
+    return {
+        widget: state.widgetWeather
+    };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+    widgetWeatherAction: bindActionCreators(widgetWeatherAction, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(WeatherContainer);

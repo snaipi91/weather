@@ -5,21 +5,11 @@ import { Provider } from 'react-redux';
 import { createStore} from 'redux';
 import reducers from './reducers/index';
 
-// const weatherReducer = (state = [], action) => {
-//     console.log(action);
-//     return state;
-// };
-
 // store
 const store = createStore(
     reducers,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
-
-store.dispatch({
-    type: 'ADD_DATA',
-    data: []
-});
 
 // material UI
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
