@@ -11,7 +11,8 @@ export default (state = WidgetWeatherState, action) => {
 
         case WidgetWeatherActions.LOAD_DATA: {
             return Object.assign({}, state, {
-                city: action.payload
+                data: action.data,
+                forecats: action.forecats
             })
         }
 
