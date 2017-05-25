@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {Link} from 'react-router';
+import PropTypes from 'prop-types';
 
 // Material-ui
 import AppBar from 'material-ui/AppBar';
@@ -14,7 +15,7 @@ import WidgetWeather from './widgetWeather/WidgetWeather';
 import VisualizationContainer from './visualization/VisualizationContainer';
 
 // Actions
-import * as widgetWeatherAction from '../actionsCreate/widgetWeather';
+import * as widgetWeatherAction from '../actionsCreate/widgetWeatherActionCreator';
 
 import './main.scss';
 
@@ -82,7 +83,7 @@ class WeatherContainer extends Component {
 
 
     componentDidMount() {
-        console.log(this.props);
+        this.props.widgetWeatherAction.loadData();
         this.loadWeatherWidgetData();
     }
 
@@ -109,6 +110,10 @@ class WeatherContainer extends Component {
         )
     }
 }
+
+WeatherContainer.propTypes = {
+    city: PropTypes.string
+};
 
 const mapStateToProps = (state) => {
     return {

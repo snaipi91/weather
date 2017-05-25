@@ -1,6 +1,6 @@
 /**
  * Created by Андрей on 24.05.2017.
  */
-import WidgetWeather from './widgetWeather';
+import WidgetWeatherState from './widgetWeatherState';
 
-export {WidgetWeather};
+export {WidgetWeatherState};

@@ -2,13 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
-import { createStore} from 'redux';
-import reducers from './reducers/index';
+import thunk from 'redux-thunk';
+import { createStore, applyMiddleware, compose} from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+// reducers
+import rootReducers from './reducers/index';
 
 // store
 const store = createStore(
-    reducers,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    rootReducers,
+    compose(applyMiddleware(thunk), composeWithDevTools())
 );
 
 // material UI

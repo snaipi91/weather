@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import widgetWeather from './widgetWeather';
-import visualWidget from './visualWidget';
+import widgetWeather from './widgetWeatherReducer';
+import visualWidget from './visualWidgetReducer';
 
 export default combineReducers({
     widgetWeather,
