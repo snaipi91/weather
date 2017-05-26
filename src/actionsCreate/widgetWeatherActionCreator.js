@@ -15,7 +15,8 @@ export function loadData(value) {
                         dispatch({
                             type: LOAD_DATA,
                             data: resolve.list,
-                            forecats: resolve.cnt
+                            forecats: resolve.cnt,
+                            city: value
                         });
                     },
                     reject => {
@@ -41,7 +42,7 @@ export function loadData(value) {
                     if (xhr.status != 200) {
                         reject(
                             {
-                                errors: xhr.status + ': ' + xhr.statusText
+                                errors: `Error${xhr.statusText}`
                             }
                         )
                     } else {

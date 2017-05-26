@@ -22,69 +22,24 @@ import './main.scss';
 class WeatherContainer extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            errors: [],
-            data: [],
-            city: 'voronezh',
-            days: 1,
-            forecats: 0
-        }
     }
 
-    loadWeatherWidgetData = (value = 'voronezh') => {
-        this.promises(value)
-            .then(
-                resolve => {
-                    this.setState({
-                        data: resolve.list,
-                        forecats: resolve.cnt
-                    });
-                },
-                reject => {
-                    this.setState({
-                        errors: reject.errors
-                    })
-                }
-        );
-    };
-
     handleChange = (event, index, value) => {
-        this.loadWeatherWidgetData(value);
+        this.props.widgetWeatherAction.loadData(value);
     };
 
-    promises(city) {
-        return new Promise((resolve, reject) => {
-            let xhr = new XMLHttpRequest(),
-                response = null;
-
-            xhr.open("GET", `http://localhost:3000/api/${city}?ctn=1`, true);
-            xhr.send();
-
-            xhr.onreadystatechange = () => {
-                if (xhr.readyState != 4) return;
-
-                if (xhr.status != 200) {
-                    reject(
-                        {
-                            errors: xhr.status + ': ' + xhr.statusText
-                        }
-                    )
-                } else {
-                    response = JSON.parse(xhr.responseText);
-                    resolve(response);
-                }
-            }
-        })
-    };
-
+    // Component before render
     componentWillMount() {
     }
 
-
+    // Component after render
     componentDidMount() {
+        console.log('render');
         this.props.widgetWeatherAction.loadData();
-        this.loadWeatherWidgetData();
+    }
+
+    // Component get props before render
+    componentDidUpdate() {
     }
 
     render() {
@@ -101,9 +56,9 @@ class WeatherContainer extends Component {
                             <MenuItem value={'madrid'} primaryText="Мадрид" />
                         </SelectField>
                     </div>
-                    <WidgetWeather data={this.state.data} city={this.state.city}/>
+                    <WidgetWeather data={this.props.widget.data} city={this.props.widget.city}/>
                 </div>
-                <VisualizationContainer/>
+                <VisualizationContainer city={this.props.widget.city}/>
                 <h1>
                 </h1>
             </div>

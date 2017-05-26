@@ -3,7 +3,7 @@
  */
 
 import {WidgetWeatherState} from '../state/'
-import {LOAD_DATA} from '../actions/widgetWeatherAction';
+import {LOAD_DATA, IS_ERRORS} from '../actions/widgetWeatherAction';
 
 export default (state = WidgetWeatherState, action) => {
 
@@ -12,7 +12,14 @@ export default (state = WidgetWeatherState, action) => {
         case LOAD_DATA: {
             return Object.assign({}, state, {
                 data: action.data,
-                forecats: action.forecats
+                forecats: action.forecats,
+                city: action.city
+            })
+        }
+
+        case IS_ERRORS: {
+            return Object.assign({}, state, {
+                errors: action.errors
             })
         }
 
