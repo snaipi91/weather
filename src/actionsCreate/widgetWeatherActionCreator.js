@@ -1,7 +1,7 @@
 /**
  * Created by Андрей on 24.05.2017.
  */
-import WidgetWeatherAction from '../actions/widgetWeatherAction';
+import {LOAD_DATA, IS_ERRORS} from '../actions/widgetWeatherAction';
 
 export function loadData(value) {
     return (dispatch) => {
@@ -13,14 +13,14 @@ export function loadData(value) {
                 .then(
                     resolve => {
                         dispatch({
-                            type: WidgetWeatherAction.LOAD_DATA,
+                            type: LOAD_DATA,
                             data: resolve.list,
                             forecats: resolve.cnt
                         });
                     },
                     reject => {
                         dispatch({
-                            type: WidgetWeatherAction.IS_ERRORS,
+                            type: IS_ERRORS,
                             errors: reject.errors
                         })
                     }
