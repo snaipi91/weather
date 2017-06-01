@@ -13,10 +13,9 @@ class VisualizationContainer extends Component {
         super(props);
     }
 
-    componentWillUpdate(nextProps) {
-        console.log('render');
-        nextProps.visualizationAction.loadData(3, nextProps.city);
-        return true;
+    componentDidUpdate() {
+        console.log('update');
+        this.props.visualizationAction.loadData(12, this.props.city);
     }
 
     render() {
@@ -26,14 +25,8 @@ class VisualizationContainer extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        visual: state.visualWidget
-    };
-};
-
 const mapDispatchToProps = (dispatch) => ({
     visualizationAction: bindActionCreators(visualizationAction, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(VisualizationContainer);
+export default connect(() => ({}), mapDispatchToProps)(VisualizationContainer);

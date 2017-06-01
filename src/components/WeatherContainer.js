@@ -34,7 +34,6 @@ class WeatherContainer extends Component {
 
     // Component after render
     componentDidMount() {
-        console.log('render');
         this.props.widgetWeatherAction.loadData();
     }
 

@@ -11,8 +11,7 @@ export default (state = VisualState, action) => {
 
         case VISUAL_LOAD_DATA: {
             return Object.assign({}, state, {
-                errors: {},
-                collection: {}
+                collection: action.collection
             })
         }
 

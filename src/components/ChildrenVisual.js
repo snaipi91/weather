@@ -12,7 +12,7 @@ export default class ChildrenVisual extends Component {
         return (
             <div className="wrapper-charts">
                 <div className="b-charts-vertical">
-                    <div id="chart_div">{this.props.city}</div>
+                    <div id="chart_div"></div>
                 </div>
                 <div className="b-charts-horizontal">
                     <div id="bar"></div>

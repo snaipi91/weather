@@ -13,9 +13,8 @@ export function loadData(days = 10, city) {
                 resolve => {
                     dispatch({
                         type: VISUAL_LOAD_DATA,
-                        collection: resolve.list
+                        collection: resolve.collection
                     });
-                    console.log(resolve.collection);
                     googleCharts(resolve.collection)
                 }
             );
@@ -52,8 +51,6 @@ export function loadData(days = 10, city) {
 
         function googleCharts(response) {
             google.charts.load('current', {'packages':['bar']});
-
-            console.log(response);
 
             // days
             let _days = response.cnt,
