@@ -3,13 +3,13 @@
  */
 
 import {WidgetWeatherState} from '../state/'
-import {LOAD_DATA, IS_ERRORS} from '../actions/widgetWeatherAction';
+import {LOAD_DATA_WIDGET, IS_ERRORS} from '../const/actionsType';
 
 export default (state = WidgetWeatherState, action) => {
 
     switch(action.type) {
 
-        case LOAD_DATA: {
+        case LOAD_DATA_WIDGET: {
             return Object.assign({}, state, {
                 data: action.data,
                 forecats: action.forecats,

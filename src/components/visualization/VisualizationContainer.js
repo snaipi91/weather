@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // ActionCreator
-import * as visualizationAction from '../../actionsCreate/visualizationActionCreator';
+import * as visualizationAction from '../../actions/visualizationActionCreator';
 
 // Components
 import ChildrenVisual from '../ChildrenVisual';
@@ -13,8 +13,11 @@ class VisualizationContainer extends Component {
         super(props);
     }
 
+    componentDidMount() {
+        this.props.visualizationAction.loadData(12, this.props.city);
+    }
+
     componentDidUpdate() {
-        console.log('update');
         this.props.visualizationAction.loadData(12, this.props.city);
     }
 

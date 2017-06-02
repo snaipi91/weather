@@ -15,7 +15,7 @@ import WidgetWeather from './widgetWeather/WidgetWeather';
 import VisualizationContainer from './visualization/VisualizationContainer';
 
 // Actions
-import * as widgetWeatherAction from '../actionsCreate/widgetWeatherActionCreator';
+import * as widgetWeatherAction from '../actions/widgetWeatherActionCreator';
 
 import './main.scss';
 
