@@ -3,6 +3,8 @@
  */
 import {LOAD_DATA_VISUAL, IS_ERRORS} from '../const/actionsType';
 
+import * as D3 from 'd3';
+
 export function loadData(days = 10, city) {
 
     return (dispatch) => {
@@ -15,7 +17,7 @@ export function loadData(days = 10, city) {
                         type: LOAD_DATA_VISUAL,
                         collection: resolve.collection
                     });
-                    googleCharts(resolve.collection)
+                    drawCharts(resolve.collection)
                 }
             );
 
@@ -49,8 +51,8 @@ export function loadData(days = 10, city) {
             });
         }
 
-        function googleCharts(response) {
-            google.charts.load('current', {'packages':['bar']});
+        function drawCharts(response) {
+            
 
             // days
             let _days = response.cnt,
@@ -63,34 +65,6 @@ export function loadData(days = 10, city) {
             });
 
             arr.unshift(_indicators);
-
-            // Set a callback to run when the Google Visualization API is loaded.
-            google.charts.setOnLoadCallback(drawChart);
-
-            function drawChart() {
-                let data = google.visualization.arrayToDataTable(arr);
-
-                let options = {
-                    chart: {
-                        title: `График температуры и влажности за период - ${_days} дней`
-                    },
-                    bars: 'horizontal' // Required for Material Bar Charts.
-                };
-
-                let optionsVertical = {
-                    chart: {
-                        title: `График температуры и влажности за период - ${_days} дней (Вертикальный)`
-                    },
-                    bars: 'vertical' // Required for Material Bar Charts.
-                };
-
-                let chart = new google.charts.Bar(document.getElementById('bar')),
-                    chartVertical = new google.charts.Bar(document.getElementById('chart_div'));
-
-
-                chart.draw(data, google.charts.Bar.convertOptions(options));
-                chartVertical.draw(data, google.charts.Bar.convertOptions(optionsVertical));
-            }
         }
     }
 
