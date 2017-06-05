@@ -52,7 +52,21 @@ export function loadData(days = 10, city) {
         }
 
         function drawCharts(response) {
-            
+            //clear canvas
+            D3.select('#canvas svg').remove();
+
+            const canvas = D3.select('#canvas').append('svg')
+                .attr('width', '100%')
+                .attr('height', 420);
+
+            const xScale = D3.scaleLinear()
+                .domain([50, '-50'])
+                .range([0, 300]);
+
+            const xAxis = D3.axisRight().scale(xScale);
+
+            canvas.append('g')
+                .call(xAxis);
 
             // days
             let _days = response.cnt,

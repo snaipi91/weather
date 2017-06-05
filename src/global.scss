@@ -9,3 +9,11 @@ body, html {
   margin: $null;
   padding: $null;
 }
+
+#canvas {
+  padding: 15px;
+
+  g {
+    padding: 5px;
+  }
+}
